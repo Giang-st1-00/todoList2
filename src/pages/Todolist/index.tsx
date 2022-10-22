@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styleTodolist from './index.module.css';
 import {checkBoxTodos, elementEdit,openEdit, addCheckEdit,checkTodos, removeTodo,addTodo,selectTodos ,setTodoInput,inputTodos, closeElementEdit, addCheckBoxTodo, changeCheckBox, removeCheckBox, checkAlls, checkAllFunction } from './todolistSlice';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState } from 'react';
 
 export default function Todolist() {
 
