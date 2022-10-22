@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import styleTodolist from './Todolist.module.css';
+import styleTodolist from './index.module.css';
 import {checkBoxTodos, elementEdit,openEdit, addCheckEdit,checkTodos, removeTodo,addTodo,selectTodos ,setTodoInput,inputTodos, closeElementEdit, addCheckBoxTodo, changeCheckBox, removeCheckBox, checkAlls, checkAllFunction } from './todolistSlice';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from 'react';
@@ -25,50 +25,12 @@ export default function Todolist() {
         }
     }
 
-  
-    return (
-        <div>
-            <div className={styleTodolist.title}>TODOS</div>
-            <div className={styleTodolist.row}>
-                    <span
-                        className={styleTodolist.span_all
-                    }>
-                        <input 
-                            type='checkbox' 
-                            onClick={e => 
-                                dispatchTodo(checkAllFunction())
-                            }
-                            style={{
-                                width : '20px',
-                                height : '20px',
-                                margin : '0 20px 0 0',
-                            }}
-                            checked={checkAll}
-                        />
-                        All
-                    </span>
-                    
-                    <input 
-                        value={inputTodo}
-                        onChange={e => {
-                            dispatchTodo(setTodoInput(e.target.value))
-                        }}
-                    />
-                    <button 
-                        className={styleTodolist.button}
-                        onClick={() => {
-                            dispatchTodo(addCheckEdit())
-                            dispatchTodo(addCheckBoxTodo())
-                            dispatchTodo(addTodo(inputTodo))
-                            dispatchTodo(setTodoInput(''))
-                        }}
-                    >
-                        ADD
-                    </button>
-            </div>
+    //Component 
+    function ShowTodo(props: any) {
+        return (
             <ul className={styleTodolist.ul}>
                 {
-                    todo.map((value,index) => {
+                    props.dataTodo.map((value: any,index: number) => {
                         return (
                             <div className={styleTodolist.todo_element}>
                                 <input 
@@ -127,11 +89,67 @@ export default function Todolist() {
                     })
                 }
             </ul>
+        )
+    }
+
+    function ActionTodo() {
+        return (
+            <div className={styleTodolist.row}>
+                    <span
+                        className={styleTodolist.span_all
+                    }>
+                        <input 
+                            type='checkbox' 
+                            onClick={e => 
+                                dispatchTodo(checkAllFunction())
+                            }
+                            style={{
+                                width : '20px',
+                                height : '20px',
+                                margin : '0 20px 0 0',
+                            }}
+                            checked={checkAll}
+                        />
+                        All
+                    </span>
+                    
+                    <input 
+                        value={inputTodo}
+                        onChange={e => {
+                            dispatchTodo(setTodoInput(e.target.value))
+                        }}
+                    />
+                    <button 
+                        className={styleTodolist.button}
+                        onClick={() => {
+                            dispatchTodo(addCheckEdit())
+                            dispatchTodo(addCheckBoxTodo())
+                            dispatchTodo(addTodo(inputTodo))
+                            dispatchTodo(setTodoInput(''))
+                        }}
+                    >
+                        ADD
+                    </button>
+            </div>
+        )
+    }
+
+    function SupportTodo() {
+        return (
             <div className={styleTodolist.supportTodo}>
                 <button onClick={e => {
                     dispatchTodo(removeCheckBox())
                 }}>Clear completed</button>
             </div>
+        )
+    }
+  
+    return (
+        <div>
+            <div className={styleTodolist.title}>TODOS</div>
+            <ActionTodo />
+            <ShowTodo dataTodo={todo}/>
+            <SupportTodo />
         </div>
     )
 }

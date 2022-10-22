@@ -1,13 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-
-export interface TodosState {
-    value : Array<number | string>;
-    todoInput : string | number;
-    checkTodo : Array<boolean>;
-    checkBoxTodo : Array<boolean>; 
-    checkAll : boolean;
-}
+import { TodosState } from "../../model/Todo";
 
 const initialState : TodosState = {
     value : [],

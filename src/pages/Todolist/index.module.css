@@ -32,10 +32,11 @@
   }
 
   ul {
-    margin : 0;
+    margin : 0 auto;
     padding : 0;
     box-sizing: border-box;
     list-style: none;
+    width: 30%;
   }
 
   .todo_element_input {
@@ -81,7 +82,7 @@
 
 .supportTodo {
   display: flex;
-  justify-content: left;
+  justify-content: center;
 }
 
 .supportTodo button{
